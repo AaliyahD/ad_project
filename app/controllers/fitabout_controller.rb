@@ -1,0 +1,2 @@
+class FitaboutController < ApplicationController
+end

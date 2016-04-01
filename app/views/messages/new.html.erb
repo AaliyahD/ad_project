@@ -1,0 +1,18 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<% if user_signed_in? %>
+<h4><%= link_to 'Back', messages_path %> | </h4>
+<% else %>
+<h4><%= link_to 'Back', root_path %> | </h4>
+<% end %>
+
+<div class="container">
+    <h1>New Message</h1> 
+    <hr>
+
+<%= render 'form' %>

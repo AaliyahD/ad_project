@@ -1,0 +1,43 @@
+<%=  render 'validation_errors', object: @message %>
+
+<%= bootstrap_form_for [@message] do |f| %>
+
+ <h4><%= link_to 'Back', admin_messages_path %> |</h4>
+
+
+  
+  <div class="container">
+    <h1> <%= @message.user.first_name + ' ' + @message.user.last_name  %> 's Message | <small> <%=  @message.created_at.strftime("%D") %> </small> 
+
+ 
+
+    <hr></h1>
+
+      <br>
+<p><h4 class = "text-left"><b>Subject</b>: <%= @message.subject%></h4><p>
+  <br>
+<p><h4 class = "text-left"><b>Message</b>: <%= @message.content %></h4><p> 
+<br>
+<p><h4 class = "text-left"><b>When</b>: <%= time_ago @message.created_at %></h4>
+
+<hr>
+        <br>
+<div class="form-group">
+        <div class="row">
+            <div class="col-xs-9 col-lg-offset-2">
+                <label class="control-label"><h4>Reply</h4></label>
+           <%= f.text_area :response, rows:7, :maxlength => 600, hide_label: true, placeholder: 'Add a response' %>
+            </div>     
+        </div>
+        <% end %>
+
+<div class ="container">
+  <div class="actions col-lg-5 col-lg-offset-4">
+     <button type="submit" class=" col-lg-12 btn btn-primary">Reply</button>
+        </div>
+
+ </div>
+
+ </div>
+<hr>
+<br><br><br><br>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+   <%= stylesheet_link_tag "post" if controller_name == "post" %>
+</head>
+<body>
+		<div class ="navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+
+
+		
+		<a href = "#" class = "navbar-brand"></a>
+		<a href="http://localhost:3000/posts" class="pull-left"> <%= image_tag("Logo.png", :alt => "Facebook feed") %></a>
+				
+				<br><br>
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-right">
+					<% if user_signed_in? %>
+						<% else %>
+				<li> <a href = "http://localhost:3000/users/sign_in">Have an account? Sign in </a></li>
+				
+						<%end %>		
+				
+			</ul>
+				<ul class = "nav navbar-nav navbar-right">
+				<% if current_user %>
+				<li><%= link_to 'Home', posts_path %></li>
+				<li><%= link_to  'My Profile', current_user %></li>
+				<li><%= link_to 'Food Diary', diarylogs_path %>
+				<li><%= link_to 'Find Friends', users_path %> %>
+				
+				<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+								<% end %>
+
+							
+				<li class = "dropdown"> 
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown"><u>Language: English</u> <b class = "caret"></b></a>
+					<ul class = "dropdown-menu">
+						<li><a href = "#">Bahasa Indonesia</a></li>
+						<li><a href = "#">Bahasa Melayu</a></li>
+						<li><a href = "#">Dansk</a></li>
+						<li><a href = "#">Deutsch</a></li>
+						<li><a href = "#">English UK</a></li>
+						<li><a href = "#">English US</a></li>
+						<li><a href = "#">Espa&ntilde;ol</a></li>
+						<li><a href = "#">Filipino</a></li>
+						<li><a href = "#">Fran&ccedilais</a></li>
+						<li><a href = "#">Italiano</a></li>
+					 </ul> 
+					 </li>
+					 
+					</ul>
+	
+			</div>
+	</div>
+	</div>
+	
+	 <title>Anytime-FitTime</title>
+ 
+</head>
+<body>
+
+
+
+
+
+
+<% if flash[:notice] %>  
+<div class="notice"><%= flash[:notice]%></div>
+<% end %>
+
+<% if flash[:alert] %>
+<div class="alert alert-info alert-dismissable"><%= flash[:alert]%>
+		<button type = "button" class = "close" data-dismiss ="alert">&times;</button>
+					</div>
+<% end %>
+
+
+</p>
+<%= yield %>
+
+<div class = "navbar navbar-default navbar-fixed-bottom">
+	
+		<div class = "container">
+				
+				<a href = "http://localhost:3000/fitabout" class = "navbar-text pull-left"> About
+				<a href = "http://localhost:3000/help" class = "navbar-text middle">Help
+				<a href = "http://localhost:3000/messages" class = "navbar-text ">Contact Us
+				<a href = "#" class = "navbar-text ">Privacy
+				<a href = "#" class = "navbar-text ">Cookies
+				<a href = "#" class = "navbar-text ">Developers</a>
+				<p class = "navbar-text center"> &copy; 2016 
+			<%= link_to Setting.site_name, 'http://localhost:3000/posts' %>
+				<b > <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Don't be anti-social " </b></i>
+
+
+					<p>
+						<a href = "https://www.facebook.com/" class= "navbar-btn btn-primary btn "&nbsp;>  Facebook	</a>
+		
+			<a href = "https://uk.pinterest.com/" class= "navbar-btn btn-danger btn "&nbsp; >Pinterest</a>
+		
+			<a href = "https://twitter.com/" class= "navbar-btn btn-info btn "> Twitter</a>
+
+			
+			
+	</div>
+	</div>
+
+	
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+	</body>
+
+
+</html>

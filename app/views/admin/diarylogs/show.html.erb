@@ -1,0 +1,43 @@
+
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+
+<h4><%= link_to 'Back', admin_diarylogs_path %> |</h4>
+
+<div class="container">
+    <h1> <%= @diarylog.user.first_name%> 's Food Log | <small> <%= @diarylog.date %> at
+      <%=  @diarylog.time.strftime("%H:%M") %></small> 
+
+     <hr></h1>
+
+    <br>
+<p><h4 class = "text-left"><b>Type of Meal</b>: <%= @diarylog.meal_type %></h4><p>
+  <br>
+<p><h4 class = "text-left"><b>Description</b>: <%= @diarylog.description %></h4><p> 
+   <br>
+   <h4 class = "text-center"><p><b>Calories</b>:<%= @diarylog.calories %><p>
+<p><b>Sugar</b>:<%= @diarylog.sugar %><p>
+<p><b>Fat</b>:<%= @diarylog.fat %><p>
+<p><b>Carbs</b>:<%= @diarylog.carbs %><p>
+<p><b>Protein</b>:<%= @diarylog.protein %><p>
+<p><b>Sodium</b>:<%= @diarylog.sodium %><p>
+<p><b>Sat Fat</b>:<%= @diarylog.sat_fat %><p>
+<p><b>Fiber</b>:<%= @diarylog.fiber %><p></h4>
+<hr>
+
+ <p><h4 class = "text-left"><b>Feedback (Short-term Goal)</b>: <%= @diarylog.feedback %> <p></h4>
+
+<br><br><br><br><br><br>
+
+
+
+
+
+
+

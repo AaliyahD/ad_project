@@ -1,0 +1,51 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<div class="container">
+    <h1> All Diarylogs</h1> 
+    <hr></h3>
+
+<div class = "jumbotron text-center">
+  <h2><b>Monitor progress and identify areas that need attention or improvement!  </b>
+  	<p>
+  	</h2>
+
+</div>
+
+<div class = "container">
+<h4><div class="text-center"><%= paginate @diarylogs %></div></h4>
+
+
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Date Created</th>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @diarylogs.each do |diarylog| %>
+			<tr>
+				<td><%= diarylog.created_at.strftime("%D") %></td>
+				<td><%= diarylog.user.first_name + ' ' + diarylog.user.last_name %></td>
+				<td><%= diarylog.user.location %></td>
+				<td>
+					<%= link_to 'Give Feedback', edit_admin_diarylog_path(diarylog) %> | 
+					<%= link_to 'View', admin_diarylog_path(diarylog) %> |
+					<%= link_to 'Delete', diarylog_path(diarylog), method: :delete, data: {confirm:  'Are you sure you would like to delete this log?'}  %> 
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+	
+
+

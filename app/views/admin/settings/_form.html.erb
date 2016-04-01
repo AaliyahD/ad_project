@@ -1,0 +1,42 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<div class="container">
+	<div class="text"
+
+<%= form_for [:admin, @setting] do |f| %>
+<%= f.label :site_name %><br>
+<%= f.text_field :site_name %><br>
+</p>
+
+<p>
+<%= f.label :post_per_page %><br>
+<%= f.number_field :post_per_page %><br>
+</p>
+
+<p>
+<%= f.label :under_maintenance %><br>
+<%= f.check_box :under_maintenance %><br>
+</p>
+
+<p>
+<%= f.label :prevent_commenting %><br>
+<%= f.select :prevent_commenting, [['disable', false], ['active', true]] %><br>
+</p>
+
+<p>
+<%= f.label :tag_visibility %><br>
+<%= f.select :tag_visibility, [['active', true], ['disable', false]] %><br>
+</p>
+
+<p><%= f.submit %></p>
+
+
+<%end %>
+
+</div>
+	<div>

@@ -1,0 +1,56 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<p>
+
+	<div class="container">
+    <h1> All Messages</h1> 
+    <hr>
+
+<div class = "jumbotron text-center">
+  <h2><b>Interact with clients and your businesses will see significant improvements in customer service. </b>
+  	<p>
+  	</h2>
+</div>
+
+<%= form_tag(admin_messages_path, method: :get) do %>
+<div class="input-append col-lg-10 col-lg-offset-3">
+	 <input class="col-lg-6" id="search" name="search" placeholder="Search for people, content or the message ID number..." type="text" />
+	<%= submit_tag 'Search'%>
+		<% end %>    
+</div>
+
+<br><br>
+
+<div class = "container">
+<h4><div class="text-center"><%= paginate @messages %></div></h4>
+
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Date Created</th>
+			<th>Message ID</th>
+			<th>Subject</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+	
+		<% @messages.each do |message| %>
+			<tr>
+				<td><%= message.created_at.strftime("%D") %></td>
+				<td><%= message.id%></td>
+				<td><%= message.subject %></td>
+				<td>
+					<%= link_to 'View', admin_message_path(message) %> |
+					<%= link_to 'Respond', edit_admin_message_path(message) %> |  
+					<%= link_to 'Delete', message_path(message), method: :delete, data: {confirm:  'Are you sure you would like to delete this log?'}  %> 
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<p>

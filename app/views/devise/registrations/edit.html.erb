@@ -1,0 +1,202 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+<h4><%= link_to 'Back', current_user %> |</h4> 
+<div class="container">
+    <h1>Edit Profile</h1> 
+    <hr></h3>
+  <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h4> Change Photo </h4>
+          <h5><small> This photo is your identity on Anytime-FitTime and appears with your posts.</h5></small>
+               <input type="file" class="form-control diabled">
+        </div>
+      </div>    
+                
+<br> <br>
+        
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+         <h3>Personal info</h3> 
+         <div class="alert alert-warning ">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>
+        
+          <strong>Note!</strong>. This information appears on your public profile, search results, and beyond.</div>
+        
+        
+
+
+        <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First name:</label>
+            <div class="col-lg-8">
+                  <%= f.text_field :first_name, hide_label: true, autofocus: true %>
+            </div>
+          </div>
+
+          <div class="form-group">
+          </strong><label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surname:</label></strong>
+            <div class="col-lg-8">
+                  <%= f.text_field :last_name, hide_label: true %>
+            <h4><small>Enter you real name, so people you know can recognise you.</h4></small>
+          </div>
+          </div>
+
+           <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location:</label>
+            <div class="col-lg-8">
+                  <%= f.text_field :location, hide_label: true %>
+            <h4><small>Where in the world are you?</h4></small>
+          </div>
+          </div>
+
+           <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hobbies:</label>
+            <div class="col-lg-8">
+                  <%= f.text_field :hobbies, hide_label: true, placeholder: 'e.g, Swimming, Running, Eating ...'%>
+            <h4><small>Help your FitTime-Pals find you!</h4></small><br><hr>
+          </div>
+          </div>
+
+          <h4 class = "text-center"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>"Tell us all about <b>your</b> fitness journey"</i></h4><p>
+
+<form class="form-horizontal" role="form">
+          <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height:</label>
+            <div class="col-lg-8">
+                  <%= f.text_field :height, hide_label: true, placeholder: 'Optional' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+          </strong><label class="col-lg-3 col-lg-offset-0 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Starting Weight:</label></strong>
+            <div class="col-lg-8">
+                  <%= f.text_field :starting_weight, hide_label: true, placeholder: 'Optional' %>
+          </div>
+          </div>
+
+           <div class="form-group">
+          <label class="col-lg-3 col-lg-offset-0 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Weight:</label>
+            <div class="col-lg-8">
+                  <%= f.text_field :current_weight, hide_label: true, placeholder: 'Optional' %>
+           
+          </div>
+          </div>
+
+           <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bio:</label>
+            <div class="col-lg-8">
+                  <%= f.text_area :about, rows:10, hide_label: true, placeholder: 'Tell us your fitness story...' %>
+          </div>
+          </div>
+
+           <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Advice:</label>
+            <div class="col-lg-8">
+                  <%= f.text_area :advice, rows:3, hide_label: true, :maxlength => 150, placeholder: 'Share your best fitness advice...' %>
+            <h4><small>Share your best fitness advice in <b>150</b> characters or less.</h4></small><br><hr>
+
+          </div>
+          </div>    
+
+     
+
+<div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Facebook:</label>
+            <div class="col-lg-8">
+                   <%= image_tag("fb.png", :alt => "Facebook feed") %>
+            <h5>Share posts to your Facebook profile or page.</h5>
+
+            <p><h4><small>Having Trouble?<%= link_to 'Learn more', '#'%></h4></small></p>
+            <br>
+            <hr>
+          </div>
+          </div>   
+<div class="container">
+<div class="col-md-9 personal-info">
+         <h3> Password</h3> 
+         <div class="alert alert-warning col-lg-12 ">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+          <strong>Note!</strong>. Leave blank if you do not want to change it.</div>
+
+<form class="form-horizontal" role="form">
+          <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:</label>
+            <div class="col-lg-8">
+                  <%= f.email_field :email, hide_label: true %>
+            </div>
+          </div>
+
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <form class="form-horizontal" role="form">
+          <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp;Password:</label>
+            <div class="col-lg-8">
+                  <%= f.password_field :password, hide_label: true, autocomplete: "off",  placeholder: 'Enter your new password' %>
+                  <h4><small>Minium is <b>8</b> characters.</h4></small>
+            </div>
+          </div>
+
+            <form class="form-horizontal" role="form">
+          <div class="form-group">
+          <label class="col-lg-3 col-lg-offset-0 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Re-enter Pasword:</label>
+            <div class="col-lg-8">
+                  <%= f.password_field :password_confirmation, hide_label: true, autocomplete: "off" , placeholder: 'Re-enter your new password'%><hr>
+<br>
+
+            </div>
+          </div>
+<div class="alert alert-success text-center col-lg-12 ">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>        
+          <h3><strong>All Finished ?</strong> </h3></div>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+ <div class="form-group">
+          <label class="col-lg-2 col-lg-offset-1 control-label">&nbsp;&nbsp;&nbsp; Password:</label>
+            <div class="col-lg-8">
+                  <%= f.password_field :current_password, hide_label:true, autocomplete: "off", placeholder: 'Enter your current password' %>
+           <h4><small> We need your current password to confirm your changes </h4></small><br>
+ 
+
+ <div class="actions text-center">
+     <button type="submit" class=" text-center btn btn-primary">Save Changes
+  </div><br></br>
+<% end %>
+
+   <div class="form-group">
+       
+            <div class="col-lg-12 text-right">
+                  <%= link_to "I'd like to delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+                 
+<br>
+<br> 
+<br>
+
+ <br> 
+<br><br> 
+<br>         </div>
+          </div>    
+          
+
+
+
+

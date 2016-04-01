@@ -1,0 +1,15 @@
+<h1> View Post</h1>
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<p><b>Title:</b> <%= @post.title %></p>
+<p><b>Content:</b> <%= @post.content %></p>
+<p><b>Publish:</b> <%= status_converter(@post.publish)%></p>
+<p><b>Created:</b> <%= time_ago(@post.created_at)%></p>
+
+
+
+

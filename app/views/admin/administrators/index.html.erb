@@ -1,0 +1,39 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+</style>
+<div class="container">
+    <h1>All Administrators</h1> 
+    <hr></h3>
+
+<br></br>
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Fullname</th>
+			<th>Username</th>
+			<th>Created</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+		<% @administrators.each do |administrator| %>
+			<tr>
+				<td><%= administrator.fullname %></td>
+				<td><%= administrator.username %></td>
+				<td><%= time_ago(administrator.created_at) %></td>
+				<td>
+					<%= link_to 'Edit', edit_admin_administrator_path(administrator) %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+</div>
+<br><br><br>

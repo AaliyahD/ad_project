@@ -1,0 +1,49 @@
+<%=  render 'validation_errors', object: @diarylog %>
+
+<%= bootstrap_form_for [@diarylog] do |f| %>
+
+
+  <h4><%= link_to 'Back', admin_diarylogs_path %> |</h4>
+
+<div class="container">
+    <h1> <%= @diarylog.user.first_name%> 's Food Log | <small> <%= @diarylog.date %> at
+      <%=  @diarylog.time.strftime("%H:%M") %></small> 
+
+     <hr></h1>
+
+    <br>
+<p><h4 class = "text-left"><b>Type of Meal</b>: <%= @diarylog.meal_type %></h4><p>
+  <br>
+<p><h4 class = "text-left"><b>Description</b>: <%= @diarylog.description %></h4><p> 
+   <br>
+   <h4 class = "text-center"><p><b>Calories</b>:<%= @diarylog.calories %><p>
+<p><b>Sugar</b>:<%= @diarylog.sugar %><p>
+<p><b>Fat</b>:<%= @diarylog.fat %><p>
+<p><b>Carbs</b>:<%= @diarylog.carbs %><p>
+<p><b>Protein</b>:<%= @diarylog.protein %><p>
+<p><b>Sodium</b>:<%= @diarylog.sodium %><p>
+<p><b>Sat Fat</b>:<%= @diarylog.sat_fat %><p>
+<p><b>Fiber</b>:<%= @diarylog.fiber %><p></h4>
+<hr>
+ <div class="form-group">
+  <br>
+  <br>
+        <div class="row">
+            <div class="col-xs-9 col-lg-offset-2">
+                <label class="control-label">Feedback (Short term goal) </label>
+           <%= f.text_area :feedback, rows:5, hide_label: true,autofocus: true, placeholder: 'Leave suitable advice and add a short term goal for individual here. '  %>
+            </div>
+            <br>
+            <% end %>
+  <br> 
+ </div>    
+ <div class ="container">
+  <div class="actions col-lg-5 col-lg-offset-4">
+     <button type="submit" class=" col-lg-12 btn btn-primary">Update Diarylog</button>
+        </div>
+
+
+<br><br><br><br><br>
+<br>
+
+

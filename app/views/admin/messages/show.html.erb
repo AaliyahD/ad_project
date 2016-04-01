@@ -1,0 +1,22 @@
+<h1>View Messages</h1>
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<h4><%= link_to 'Back', admin_dashboard_index_path %> |</h4>
+
+<div class="container">
+    <h1> <%= @message.user.first_name + ' ' + @message.user.last_name %> | <small>sent  <%= time_ago @message.created_at %> <hr></h1>
+
+    <br>
+    <p><h4 class = "text-left"><b>Subject</b>: <%= @message.subject%></h4><p>
+    	<br>
+<p><h4 class = "text-left"><b>Message: <%= @message.content %></h4><p>
+  <br>
+  <hr>
+<p><h4 class = "text-left"><b> Admin Response</b>: <%= @message.response %></h4><p> 
+  
+
+<br><br><br><br><br><br>

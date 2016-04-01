@@ -1,0 +1,54 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+
+<div class="container">
+    <h1>All Users</h1> 
+    <hr></h3>
+
+<%= form_tag(admin_users_path, method: :get) do %>
+<div class="input-append col-lg-10 col-lg-offset-3">
+	 <input class="col-lg-6" id="search" name="search" placeholder="Search for people, places and hobbies..." type="text" />
+	<%= submit_tag 'Search'%>
+		<% end %>    
+</div>
+
+<br><br>
+<div class = "container">
+<h4><div class="text-center"><%= paginate @users %></div></h4>
+
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Email</th>
+			<th>Signed Up</th>
+			<th>Login Count </th>
+			<th>Options</th>
+			
+		</tr>
+	</thread>
+	<tbody>
+	<% @users.each do |user| %>
+			<tr>
+				<td><%= link_to user.first_name + ' ' + user.last_name, user %></td>
+				<td><%= user.location %></td>
+				<td><%= user.email %></td>
+				<td><%= time_ago(user.created_at) %></td>
+				<td><%= user.sign_in_count %></td>
+				<td><%= link_to "Destroy", "#" %>| 
+					<%= link_to 'edit', "#" %> |
+					<%= link_to 'Send a Message', '#' %> |
+					</td>
+			
+				
+				
+			</tr>
+		<% end %>
+	</tbody>
+</table>

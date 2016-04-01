@@ -1,0 +1,60 @@
+
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<style>
+
+          body {
+background-image:  url(/assets/fitness3.jpe);
+background-repeat: no-repeat;
+background-size: 100%; }
+  </style>
+<div class="container">    
+<div class = "jumbotron text-center">
+
+	<h1><b> Find your FitTime-Pal</b></h1>
+	</div>
+	<%= form_tag(users_path, method: :get) do %>
+	<div class="input-append col-lg-10 col-lg-offset-3">
+	 <input class="col-lg-6" id="search" name="search" placeholder="Search for people, places and hobbies..." type="text" />
+	<%= submit_tag 'Search'%>
+		<% end %>    
+
+</div>
+
+    <br></br><br></br>  <br></br>
+
+
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Full Name</th>
+			<th>Location</th>
+			<th>Hobbies</th>
+			<th>Discover People You May Know</th>
+			
+		</tr>
+	</thread>
+	<tbody>
+	<% @users.each do |user| %>
+			<tr>
+				<td><%= link_to user.first_name + ' ' + user.last_name, user %></td>
+				<td><%= user.location %></td>
+				<td><%= user.hobbies %></td>
+				<td><%= link_to 'Add', '#' %> | 
+					<%= link_to 'Send a Message', '#' %> |
+					<%= link_to 'Poke', '#' %></td>	
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class = "container">
+<h4><div class="text-center"><%= paginate @users %></div></h4>
+<br> <br><br> <br><br> <br>
+
+

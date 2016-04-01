@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Anytime-FitTime </title>
+
+<body>
+		<div class ="navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+			
+				<a href = "#" class = "navbar-brand"></a>
+		<a href="http://localhost:3000/dashboard" class="pull-left"> <%= image_tag("Logo.png", :alt => "Facebook feed") %></a>
+				
+							
+					<br><br>
+				<div class = "collapse navbar-collapse navHeaderCollapse">				
+			</ul>
+				<ul class = "nav navbar-nav navbar-right">
+<% if current_administrator  %>
+							
+				
+				<li><%= link_to 'Settings', new_admin_setting_path %>	
+				<li><%= link_to "Log Out", logout_path %></li>
+						<% unless @disable_nav %>	
+				<% end %>
+				<% end %>	 
+					</ul>
+	
+		
+	</div>
+	</div>
+
+		</div>
+	</div>
+	</div>
+	
+	
+	<div class = "navbar navbar-default navbar-fixed-bottom">
+	
+		<div class = "container">
+			<p class = "navbar-text pull-left">Anytime-FitTime &copy; 2016</p>
+			
+	</div>
+	</div>
+	
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+	</body>
+</head>
+<body>
+
+
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice]%></div>
+<% end %>
+
+<% if flash[:alert] %>
+<div class="alert"><%= flash[:alert]%></div>
+<% end %>
+
+
+
+
+<%= yield %>
+
+
+
+</body>
+</html>

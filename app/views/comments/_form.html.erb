@@ -1,0 +1,20 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<% if user_signed_in?%>
+<hr>
+<h4> Have your say ! </h4>
+<%= bootstrap_form_for([@post, @post.comments.build]) do |f| %>
+
+<%= f.text_area :message, hide_label: true, placeholder: "Leave a comment..."  %>
+
+<div class="form-group">
+        <div class="col-xs-0 ">
+            <button type="submit" class="btn btn-primary">Add Message</button>
+        </div>
+    </div>
+<% end %>
+<% end %>

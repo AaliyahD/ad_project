@@ -1,0 +1,159 @@
+
+ <h4><%= link_to 'Back', root_path %>|</h4>  	<b> </b>
+ 
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<div class = "container">
+<div class = "row">
+	<div class = "col-lg-9">
+		<div class ="panel panel-default">
+
+			<div class = "panel-body">
+				
+				<div class = "page-header">
+
+<h3> 
+	<%= @post.title %> 
+
+	<% if @post.user %>
+	<small> Posted by <%=  @post.user.first_name + ' '+ @post.user.last_name%> <%= time_ago @post.created_at %> </small>
+
+	<% else @post.administrator %>
+	<small> Posted by  <%= @post.administrator.fullname %> <%= time_ago @post.created_at %></small> </h3>
+	<% end %>
+	<p></p>
+	<p class = "text-center "><%= image_tag @post.image.url(:medium )%><p>
+</div>
+
+<p> <h4><small>
+	<%= @post.content %>
+</p> </small></h4>
+	
+	</div>
+	</div>
+<hr>
+ <div class="alert alert-info"></div>
+	 <div class=" text-center"><h4>C O M M E N T S</h4></div>
+
+<div class = "container">
+	
+	<%= render @post.comments %> 
+</div>
+
+
+<% if user_signed_in? %>
+<%= render 'comments/form' %>
+<% else %>
+
+ <div class="alert alert-info"></div>
+	<h4>Leave a comment?</h4>
+
+             <p>
+                  <label class="sr-only">Your Name</label>
+                  <input type="text" class="form-control" placeholder="Your Name" >
+                </p>
+
+                <p>
+                  <label class="sr-only">Your Comment</label>
+                  <textarea class="form-control" placeholder="Add a public comment" id="textarea" ></textarea>
+                </p>
+
+                <p><a href = "#contact" data-toggle="modal" class =  "btn btn-primary"> Add Comment </a></li></p>
+                <hr>
+                <br>
+
+<% end %>
+
+
+	
+	</div>
+
+
+
+	<div class = "col-lg-3">
+		<div class = "list-group">
+		<a href = "#" class = "list-group-item list-group-item-warning">
+			<h4 class = "list-group-item-heading text-center "> <b>Did You Know?</b></h4>
+			<p class = "list-group-item-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta augue dignissim, aliquet ipsum vitae, porta nibh. Quisque fringilla leo in orci iaculis, non porttitor justo auctor.  </p> 
+			</a>
+			<a href = "https://twitter.com/" class = "list-group-item list-group-item-info">
+			<h4 class = "list-group-item-heading text-center"> <b>Win a Free Trip!</b></h4>
+			<p class = "list-group-item-text"> Its that time again. Who inspires you and why ? Follow our Twitter account to enter the competition and remember to include the <b>#ATFT </b> in your tweet. Good Luck !  <h4 class= "navbar-btn btn-info btn btn-center col-lg-offset-4"> Twitter</h4>
+	
+			<a href = "https://uk.pinterest.com/" class = "list-group-item list-group-item-danger">
+			<h4 class = "list-group-item-heading text-center"><b> Have you Seen?</b></h4>
+			<p class = "list-group-item-text"> Aliquam dapibus neque elit, sit amet gravida ligula efficitur et. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin convallis erat leo, quis interdum velit euismod facilisis. Phasellus a ipsum eu diam vehicula sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis id fringilla erat.  <h4 class= "navbar-btn btn-danger btn btn-center col-lg-offset-4"> Pintrest</h4>
+						
+</p>
+			</a>
+			<a href = "#" class = "list-group-item list-group-item-success">
+			<h4 class = "list-group-item-heading text-center"><b> Why Not Try?</b></h4>
+			<p class = "list-group-item-text"> Maecenas molestie, dui vel euismod ultrices, diam dolor mollis quam, ac malesuada tortor arcu quis lectus. Praesent faucibus, purus maximus aliquet porttitor, mi enim auctor nibh, non aliquet leo massa at dui. Mauris commodo arcu posuere, suscipit odio eget, maximus lorem. Nulla non orci pulvinar, tempus sapien eu, finibus lacus. </p>
+			</a>
+			<a href = "#" class = "list-group-item list-group-item-warning">
+			<h4 class = "list-group-item-heading text-center"><b> Something New!</b></h4>
+			<p class = "list-group-item-text"> Mauris ipsum sapien, tincidunt non pellentesque at, malesuada vel erat. Fusce eu rutrum libero, quis laoreet nisl. Nulla lacus velit, malesuada et dapibus sit amet, viverra euismod ipsum. Nunc sit amet est feugiat, iaculis enim vel, efficitur eros</p>
+			</a>
+			</div>
+	</div>
+	</div>
+	</div>
+
+
+<br>
+
+
+<div class="modal fade" id="contact" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog">
+	<div class = "modal-content">
+		<div class = "modal-header">
+			<h3>Let's stay in touch - Sign up for email</h3>
+		</div>
+		<div class = "modal-body">
+		<p>
+			<%= form_for @visitor_comment, url: comments_url do |f| %>
+
+<h5>Be the first to know about special fitness deals & get offers sent directly to your inbox. Sign up now and you may win a <u><b>free</b></u> Zumba lesson for you and a friend.</p></h5>
+
+
+<p>
+
+  <%= bootstrap_form_for @visitor_comment, url: comments_url do |f| %>
+
+	<%= f.text_field :email, hide_label: true, placeholder: 'Enter email adress' %>
+
+	<p><h6>Upon submission, you will begin recieving exclusive offers and deals happening at AnytimeFitTime.We'll never share your email address and you can opt out at anytime , we promise.</p></h6>
+
+<%= f.check_box :email, label: " Yes, send me weekly newsletters (optional)" %>
+<%= f.check_box :email, label: " By checking this box, I acknowledge that I have read, understand and agree to the Anytime-FitTime.com license agreements above, and the Anytime-FitTime.com Privacy Policy ." %>
+
+<% end %>
+</p>
+
+   
+    You need to check this box to accept our terms of service and privacy policy.
+
+
+
+
+
+
+<% end %>
+
+	</div>
+		<div class = "modal-footer">
+			<a class = "btn btn-primary disabled" data-dismiss = "modal" >Continue</a>
+			<a class = "btn btn-danger" data-dismiss = "modal" >Cancel</a>
+	</div>
+</div>
+	</div>
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="js/bootstrap.js"></script>

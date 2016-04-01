@@ -1,0 +1,213 @@
+<%=  render 'validation_errors', object: @diarylog %>
+
+<%= bootstrap_form_for [@diarylog] do |f| %>
+
+
+  
+<hr>
+<br>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-3 col-lg-offset-3">
+                <label class="control-label"><h4>Meal Type</h4></label>
+         <%= f.text_field :meal_type,  hide_label: true, placeholder: "Breakfast, Lunch, Dinner or Snack "%>
+            </div>
+
+            <div class="col-xs-2 ">
+                <label class="control-label"><h4>Date of Meal</h4></label>
+               <%= f.date_field :date, hide_label: true  %>
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label"><h4>Time Eaten</h4></label>
+              	<%= f.time_field :time, hide_label: true %>
+            </div>
+        </div>
+         <div class="col-xs-7 col-lg-offset-8"> <h4><small> <b>&nbsp;&nbsp;Note:</b> 24 Hour Clock </small></h4></div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-7 col-lg-offset-3">
+                <label class="control-label"><h4>Description</h4></label>
+           <%= f.text_area :description, rows:7, :maxlength => 600, hide_label: true, placeholder: 'How did you cook this? Was this shop bought?'  %>
+            </div>     
+ </div>
+ <div class="col-xs-7 col-lg-offset-3"> <h4><small> Describe the meal in <b> 600 </b> characters or less.</small></h4></div>
+</div>
+</div>
+<hr>
+<h3 class = "text-center"> Please Enter the Amount for the Following: </h3>
+<div class = "alert alert-info text-center"> <h4 class = "text center"><b>H E L P </b></h4> 
+  <p><h5> 1. The amount of nutrients and calories contained in a product can normally be found on the back of the product, under the <b>nutrition label.</b> <a href = "#example" data-toggle="modal" class =  "btn-xs btn-info"> View Example </a> </p></h5> 
+  2.  If there is more than one product, enter the total amount in the appropriate box below.
+<br><br>
+ <h4><small> If you are having trouble with the form and unable to enter the correct data, please make a note of this in the <b>Description Box</b> above. </h4></small></h4>
+</div>
+				
+
+ <div class="form-group">
+        <div class="row">
+            <div class="col-xs-1 col-lg-offset-2">
+                <label class="control-label">Calories</label>
+             		<%= number_field_tag :calories, nil, min: 0, max: 2500, hide_label: true  %>
+            </div>
+
+            <div class="col-xs-1 ">
+                <label class="control-label">Sugar</label>
+               <%= number_field_tag :sugar, nil, min: 0, max: 1000, hide_label: true  %>
+            </div>
+
+            <div class="col-xs-1">
+                <label class="control-label">Fat</label>
+              <%= number_field_tag :fat, nil, min: 0, max: 1000, hide_label: true  %>
+            </div>
+            <div class="col-xs-1">
+                <label class="control-label">Carbs</label>
+              <%= number_field_tag :carbs, nil, min: 0, max: 1000, hide_label: true  %>
+            </div>
+            <div class="col-xs-1">
+                <label class="control-label">Protein</label>
+              <%= number_field_tag :protein, nil, min: 0, max: 1000, hide_label: true  %>
+            </div>
+         
+            <div class="col-xs-1">
+                <label class="control-label">Sodium</label>
+              	<%= number_field_tag :sodium, nil, min: 0, max: 1000, hide_label: true, placeholder: 'OPT.' %>
+            </div>
+            <div class="col-xs-1">
+                <label class="control-label">Sat Fat</label>
+              	<%= number_field_tag :sat_fat, nil, min: 0, max: 1000, hide_label: true, placeholder: 'OPT.' %>
+            </div>
+   <div class="col-xs-1">
+                <label class="control-label">Fiber</label>
+           <%= number_field_tag :fiber, nil, min: 0, max: 1000, hide_label: true, placeholder: 'OPT.' %>
+            </div>
+          </div>
+            <br>
+
+    <div class"col-xs-1 col-lg-offset-6">
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      <a href = "#more" data-toggle="modal" > Why do i need to provide this information? Learn more... </a></li></p>
+</div>
+
+
+
+<div class="modal fade" id="more" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog">
+  <div class = "modal-content">
+    <div class = "modal-header">
+     </div>
+    <div class = "modal-body">
+    <p>
+    Whilst some of the fields are optional, it is recommended that you enter as much information as you can to ensure you get the most out of your food diary. This data will help the fitness instructor to diagnose your nutrition intake and offer suitable advice.
+
+    <p> For more information on balanced diets visit: <a href = "http://www.nhs.uk/Livewell/Goodfood/Pages/eatwell-plate.aspx 
+"> The NHS Eatwell Plate </a>
+
+     <p> We strongly reccommend you enter the correct details. <u> Honesty is the best policy. </u><p>
+  </div>
+    <div class = "modal-footer">
+      <a class = "btn btn-primary" data-dismiss = "modal" >OK</a>
+     </div>
+</div>
+  </div>
+        </div>
+
+        <div class="modal fade" id="example" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog">
+  <div class = "modal-content">
+    <div class = "modal-header">
+     </div>
+    <div class = "modal-body">
+<%= image_tag("Nutrition.png", :alt => "ATFT") %>
+  </div>
+    <div class = "modal-footer">
+      <a class = "btn btn-primary" data-dismiss = "modal" >OK</a>
+     </div>
+</div>
+  </div>
+        </div>
+        <br>
+<br>
+<hr>
+<% if user_signed_in? %> 
+<div class ="container">
+  <div class="actions col-lg-4 col-lg-offset-4">
+     <button type="submit" class=" col-lg-12 btn btn-primary">Submit Diarylog</button>
+        </div>
+
+ </div>
+
+
+
+
+<div class="form-group">
+	<br>
+	<br>
+        <div class="row">
+            <div class="col-xs-7 col-lg-offset-3">
+                <label class="control-label">Feedback (Short term goal) </label>
+           <%= f.text_area :feedback, rows:5, hide_label: true, placeholder: 'Please leave this blank. This is for your fitness instructor to complete.'  %>
+            </div>
+ </div>
+ <% else %>
+
+<div class ="container">
+  <div class="actions col-lg-4 col-lg-offset-4">
+      <p><a href = "#contact" data-toggle="modal" class =  "col-lg-12 btn btn-primary"> Submit Diarylog </a></li></p>
+        </div>
+
+ </div>
+
+<div class="form-group">
+	<br>
+	<br>
+        <div class="row">
+            <div class="col-xs-7 col-lg-offset-3">
+                <label class="control-label">Feedback (Short term goal) </label>
+           <%= f.text_area :feedback, rows:5, hide_label: true, placeholder: 'Please leave this blank. You will recieve a response within 24 hours.'  %>
+            </div>
+ </div>
+<br><br><br><br><br><br><br><br><br><br>
+ <div class="modal fade" id="contact" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog">
+  <div class = "modal-content">
+    <div class = "modal-header">
+      <h3><b>Attention!</b></h3>
+    </div>
+    <div class = "modal-body">
+    <p>
+     
+
+
+<h4>This is a preview. You need to <b>sign in</b> or <b>sign up</b> before continuing.</h4>
+
+
+</p>
+
+
+
+
+
+
+
+
+  </div>
+    <div class = "modal-footer">
+      <a href = 'http://localhost:3000/users/sign_up' class =  "btn btn-primary">OK</a>
+      <a class = "btn btn-danger" data-dismiss = "modal" >Cancel</a>
+  </div>
+</div>
+  </div>
+ <%end %>
+
+
+<% end %>
+<br><br><br><br><br><br><br><br><br><br>

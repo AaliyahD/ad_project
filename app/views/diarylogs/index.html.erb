@@ -1,0 +1,55 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+
+</style>
+<div class="container">
+    <h1> Food Diary Logs</h1> 
+    <hr></h3>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("diary.png", :alt => "Fitnessclass feed") %> 
+
+
+
+ <a href = 'http://localhost:3000/diarylogs/new' class =  "btn btn-primary text-center  "> Create New Log</a>
+
+<br><br>
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th><h5  class = "text-left"><b>Date Created</b></h5></th>
+			<th><h5  class = "text-left"><b>Time Eaten </b></h5></th>
+			<th><h5  class = "text-left"><b>Type of Meal </b></h5></th>
+			<th><h5  class = "text-left"><b>Actions</b></h5></th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @diarylogs.each do |diarylog| %>
+			<% if user_signed_in?%>
+ 			<% if diarylog.user_id == current_user.id %>
+			<tr>
+				<td><h5 class = "text-left"> <%=  diarylog.date %></h5></td>
+				<td><h5 class = "text-left"> <%=  diarylog.time.strftime("%H:%M") %></h5></td>
+				<td><h5 class = "text-left"> <%= diarylog.meal_type %></h5></td>
+				<td>
+			
+					<%= link_to 'View', diarylog_path(diarylog) %> |
+					<%= link_to 'Edit', edit_diarylog_path(diarylog) %> | 
+					<%= link_to 'Del', diarylog_path(diarylog), method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} %> 
+						<% end %>
+					<% end %>
+					
+
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<p>
+<div class = "container">
+<h4><div class="text-center"><%= paginate @diarylogs %></div></h4>
+<br> <br><br> <br><br> <br>

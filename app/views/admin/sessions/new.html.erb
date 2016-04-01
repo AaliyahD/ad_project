@@ -1,0 +1,31 @@
+<br><br>
+
+<div class="text-center"><h1> Administrator Login</h1>
+<%= form_tag admin_sessions_path do %>
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+ <body>
+  
+	<p>
+	<div class="text-center"><%= label_tag :username %><br>
+		<%= text_field_tag :username %>
+	</p>
+	<p>
+		<%= label_tag :password %><br>
+		<%= password_field_tag :password %>
+	</p>
+<p><%= submit_tag 'Log in' %></p>
+<% end %>
+<%= link_to 'Return to Main Page', new_user_session_path %>
+
+ <style>
+
+          body {
+background-image:  url(/assets/lock.png);
+background-repeat: no-repeat;
+background-size: 100%; }
+  </style>

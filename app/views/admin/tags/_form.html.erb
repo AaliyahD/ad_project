@@ -1,0 +1,29 @@
+<%=  render 'validation_errors', object: @tag %>
+
+
+<%= bootstrap_form_for [:admin, @tag] do |f| %>
+
+<br>
+<div class ="container">
+<h4> When creating tags be sure to include a <b>comma</b> between each word as this will ensure the save is successful. We strongly recommend you create tags with the business name i.e , <i> ATFTWorkout </i>. In the case the user shares their post to another social media, this will raise awareness for your business and essentially increase customer retention.</h4> 
+<hr>
+</div>
+<div class ="container">
+<div class="form-group">
+ <div class="input-group col-lg-8 col-lg-offset-2">
+     <div class="input-group-addon">Tag Name</div>
+            <%= f.text_area :name, hide_label: true, rows: 2, placeholder: 'e.g. Healthy, fitness, Workout' %><br>
+        </div>
+    </div>
+   </div>
+   <div class ="container col-lg-offset-3">
+   <h4><small> Go ahead and create as many tags as you want. Just remember to include a <b>comma</b> between each word. </small></h4>
+</div>
+   <br>
+   <% end %>
+<div class ="container">
+<div class="form-group">
+        <div class="col-lg-9 col-lg-offset-5">
+            <button type="submit" class="btn btn-primary">Create Tag</button>
+             </div>
+    </div>

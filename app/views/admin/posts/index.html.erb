@@ -1,0 +1,46 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<div class="container">
+    <h1>All Posts</h1> 
+    <hr></h3>
+
+<div class = "jumbotron text-center">
+  <h2><b>Keep users up to date with the latest news about the business and any upcoming events !  </b></h2> 
+
+<a href = 'http://localhost:3000/admin/posts/new' class =  "btn btn-primary col-lg-offset-1]0 text-center  "> Create New Post</a>
+	</div>
+</p>
+
+<div class = "container">
+<h4><div class="text-center"><%= paginate @posts %></div></h4>
+		<tr>
+<table class="table table=bordered table hover">
+	<thread>
+			<th>Title</th>
+			<th>Publish</th>
+				<th>Posted</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @posts.each do |post| %>
+			<tr>
+				<td><%= truncate(post.title, length: 60, separate: '') %></td>
+				<td><%= status_converter(post.publish, truthy: 'Active', falsey: 'Pending') %></td>
+				<td><%= time_ago post.created_at %></td>
+				<td>
+					<%= link_to 'Edit', edit_admin_post_path(post) %> | 
+					<%= link_to 'View', admin_post_path(post) %> |
+					<%= link_to 'Delete', admin_post_path(post), method: :delete, data: {confirm:  'Are you sure you would like to delete this post?'}  %> |
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

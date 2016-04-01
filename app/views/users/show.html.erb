@@ -1,0 +1,176 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+ 
+<% if user_signed_in?%>
+ <% if @user.id == current_user.id %>
+  <% greet %>
+  <% else %>
+  <% end %>
+    <% end %>
+</style>
+<div class="container">
+    
+<% if user_signed_in?%>
+ <% if @user.id == current_user.id %>
+ <h1>My Profile</h1> 
+    <a href = 'http://localhost:3000/users/edit' class =  "btn btn-default  "> Edit Profile</a><hr>
+  <% end %>
+  <% end %>
+
+<div class="container">
+  <div class = "jumbotron text-center">
+<h2 class="text-center"><b><%= @user.first_name + ' ' +  @user.last_name  %></b></h2>
+<h4 class=" text-center"> " <%=@user.advice %> "</h4>
+</div>
+   
+
+  <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+        
+          <h4><small> Display Picture</h4></small>
+
+
+   
+          
+<% if user_signed_in?%>
+  <% if @user.id == current_user.id %>
+   <div class="alert alert-info"></div>
+
+            
+<h4><b> Recent Comments </b></h4> 
+         
+<% @comments.each do |comment| %>
+<% if comment.user_id == current_user.id %>
+ <p>You <b>commented on</b> <%= comment.post.title %> 
+  <small><p><%= time_ago comment.created_at %><p></small>
+             <hr>        
+
+<% end %>
+     <% end %>
+    <% else %>    
+    <div class="alert alert-info"></div>
+      <a href = 'http://localhost:3000/users/edit' class =  "btn btn-success  disabled"> Poke <%= @user.first_name %> </a><p></p>
+   <a href = 'http://localhost:3000/users/edit' class =  "btn btn-primary disabled "> Send <%= @user.first_name %> a Message</a>
+<% end %>
+<% end %>
+<br> <br> <br> <br> <br> <br>
+      
+  <br> <br> <br> <br> <br> <br>  <br> 
+</table>
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+         <h3 class="text-center"><b> About Me</h3></b> 
+         <div class="alert alert-default">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>
+          
+
+<h4><p><b>Height</b>:<%=@user.height %></p>
+<br>
+<p><b>Starting Weight</b>:<%=@user.starting_weight %></p>
+<br>
+<p><b>Current Weight</b>:<%=@user.current_weight %></p>
+<br>
+<p><b>My Hobbies & Interests</b>:<%=@user.hobbies %> </p>
+
+<hr>
+<p><h4 class = "text-left"><b><%= @user.first_name%>'s Story</b>:</h4>  <%=@user.about %></p> </h4>
+
+<br>
+</div>  
+
+  <div class="alert alert-info"></div>
+<% if user_signed_in?%>
+ <% if @user.id == current_user.id %>
+
+<div class="col-md-12 personal-info">
+         <h3 class="text-center"><b> All My Posts </b></h3>
+         <a href = 'http://localhost:3000/users/edit' class =  "btn btn-md btn-primary col-lg-offset-5 "> Create New Post</a>
+         <br>
+         <div class="alert alert-default">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>
+
+      <table class=" table table=bordered table hover">
+  <thread>
+    <tr >
+      <th><h4 class = "text-left"> Title</h4></th>
+      <th><h4 class = "text-left">Comments</h4></th>
+      <th><h4 class = "text-left">Posted</h4></th>
+      <th><h4 class = "text-left">Actions</h4></th>
+    </tr> 
+  </thread>
+   <tbody>
+
+     <% @posts.each do |post| %> 
+    <% if @user.id  == post.user_id %> 
+
+      <tr>
+        <td class = "text-left"><%= truncate(post.title, length: 35, seperator: '') %></td>
+        <td><%= post.comments.count %></td>
+        <td><%= time_ago post.created_at %></td>
+        <td>
+          <%= link_to 'edit', edit_post_path(post) %>
+          <%= link_to 'view', post_path(post) %>
+          <%= link_to 'del', post_path(post), method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} %> 
+        </td>       
+      </tr>   
+
+
+    <% end %>
+
+        <% end %>
+
+  </div> 
+</div>
+      <% else %>    
+  <div class="container">
+<div class="col-md-9 personal-info">
+        <h3 class="text-center"><b> All <%= @user.first_name %>'s Posts</h3></b>
+         <div class="alert alert-default">
+          <a class="panel-close close" data-dismiss="alert"></a> 
+          <i class="fa fa-coffee"></i>
+
+      <table class="table table=bordered table hover">
+  <thread>
+    <tr>
+      <th>Title</th>
+       <th>Date</th>
+       <th>Posted</th>
+      <th>Actions</th>
+    </tr>
+  </thread>
+  <tbody>
+
+     <% @posts.each do |post| %> 
+    <% if @user.id  == post.user_id %> 
+
+      <tr>
+        <td><%= truncate(post.title, length: 35, seperator: '') %></td>
+        <td><%= time_ago post.created_at %></td>
+        <td><%= time_ago post.created_at %></td>
+        <td>
+        <%= link_to 'view', post_path(post) %>
+        </td>       
+      </tr>   
+    <% end %>
+    <% end %>
+        <% end %>
+     <% end %>
+  </tbody>
+
+</div>
+</div>
+

@@ -1,0 +1,343 @@
+
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+<% if user_signed_in? %>
+<h4><%= link_to 'Back', diarylogs_path %> | </h4>
+<% else %>
+<h4><%= link_to 'Back', root_path %> | </h4>
+<% end %>
+
+<div class="container">
+    <h1> <%= @diarylog.user.first_name%> 's Food Log | <small> <%= @diarylog.date %> at
+      <%=  @diarylog.time.strftime("%H:%M") %></small> 
+
+    <a href = "#contact" data-toggle="modal" class =  "col-lg-offset-5 text-right btn btn-success"> TIP </a>
+
+    <hr></h1>
+
+  
+
+
+
+  <br>
+<p><h4 class = "text-left"><b>Type of Meal</b>: <%= @diarylog.meal_type %></h4><p>
+  <br>
+<p><h4 class = "text-left"><b>Description</b>: <%= @diarylog.description %></h4><p> 
+   <br>
+   <hr>
+ <p><h4 class = "text-left"><b>Feedback (Short-term Goal)</b>: <%= @diarylog.feedback %> <p></h4>
+ <hr>
+
+<div class = "alert alert-info text-center"><h3><b>G U I D E L I N E</b><p></h3>
+
+ <h5 class= "text-left"> Whilst the pie chart on the left represents your overall nutrition intake, the <b>Eatwell</b> pie chart on the right shows you how much of what you eat, should come from each food group. To help you get the right balance of the main food groups, take a look at the <b> Eatwell </b> pie chart and use it as a guide to maintain a healthy diet.  </p>
+
+ <p> It's important to have only small amounts of foods high in fat and/or sugar. Eating a healthy, balanced diet is an important part of maintaining good health, and can help you feel your best. </b> </h5>
+
+
+
+<h3 class= "text-center"> <small><p> Learn more about balanced diets on the <a href = "http://www.nhs.uk/Livewell/Goodfood/Pages/eight-tips-healthy-eating.aspx
+"> <u>The NHS Livewell </u></a> page and read about the energy contained in food. </small></h3>
+</div>    
+  
+
+        </div>      
+    <style>
+    body { background:#; }
+  </style>
+
+<% if @diarylog.meal_type == 'Snack' %>
+
+  <div class="container text-center col-lg-4 col-lg-offset-1">
+<h1>Your Snack</h1>
+<div id="graph"></div>
+  <script>
+Morris.Donut({
+  element: 'graph',
+data: [
+    {label: "Calories", value: 450},
+    {label: "Sugar", value: 228},
+     {label: "Fat", value: 25},
+     {label: "Carbs", value: 143},
+    {label: "Protein", value: 10},
+     {label: "Sodium", value: 0},
+     {label: "Fiber", value: 0},
+    {label: "Saturated Fat", value: 0}
+  ],
+  backgroundColor: '#000000',
+  labelColor: '#5316FA',
+  colors: [
+    '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+    '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+
+  ],
+
+});</script>
+
+
+</div>
+
+<div class="container col-lg-6">
+  <h1 class="text-center">Eatwell Snack </h1>
+
+<div id= "example"></div>
+<script>
+Morris.Donut({
+  element: 'example',
+  data: [
+    {label: "Calories", value: 250},
+    {label: "Sugar", value: 40},
+     {label: "Fat", value: 5},
+     {label: "Carbs", value: 100},
+    {label: "Protein", value: 20},
+     {label: "Sodium", value: 20},
+     {label: "Fiber", value: 50},
+    {label: "Saturated Fat", value: 5}
+  ],
+   backgroundColor: '#000000',
+  labelColor: '#060',
+  colors: [
+   '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+    '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+  ],
+});</script>
+
+<% end %>
+
+<% if @diarylog.meal_type == 'Dinner' %>
+
+  <div class="container text-center col-lg-4 col-lg-offset-1">
+<h1>Your Dinner</h1>
+<div id="graph"></div>
+  <script>
+Morris.Donut({
+  element: 'graph',
+data: [
+    {label: "Calories", value: 450},
+    {label: "Sugar", value: 95 },
+     {label: "Fat", value: 325},
+     {label: "Carbs", value: 750},
+    {label: "Protein", value: 50},
+     {label: "Sodium", value: 0},
+     {label: "Fiber", value: 35},
+    {label: "Saturated Fat", value: 0}
+  ],
+  backgroundColor: '#000000',
+  labelColor: '#D22118',
+  colors: [
+    '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+ '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+
+
+  ],
+
+});</script>
+
+
+</div>
+
+<div class="container col-lg-6">
+  <h1 class="text-center">Eatwell Dinner </h1>
+
+<div id= "example"></div>
+<script>
+Morris.Donut({
+  element: 'example',
+  data: [
+    {label: "Calories", value: 450},
+    {label: "Sugar", value: 60},
+     {label: "Fat", value: 150},
+     {label: "Carbs", value: 350},
+    {label: "Protein", value: 75},
+     {label: "Sodium", value: 30},
+     {label: "Fiber", value: 100},
+    {label: "Saturated Fat", value: 20}
+  ],
+backgroundColor: '#000000',
+  labelColor: '#D22118',
+  colors: [
+    '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+   '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+
+  ],
+});</script>
+
+
+<% end %>
+
+
+<% if @diarylog.meal_type == 'Breakfast' %>
+
+  <div class="container text-center col-lg-4 col-lg-offset-1">
+<h1>Your Breakfast</h1>
+<div id="graph"></div>
+  <script>
+Morris.Donut({
+  element: 'graph',
+data: [
+    {label: "Calories", value: 650},
+    {label: "Sugar", value: 78},
+     {label: "Fat", value: 5},
+     {label: "Carbs", value: 143},
+    {label: "Protein", value: 10},
+     {label: "Sodium", value: 0},
+     {label: "Fiber", value: 0},
+    {label: "Saturated Fat", value: 0}
+  ],
+  backgroundColor: '#000000',
+  labelColor: '#5316FA',
+  colors: [
+    '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+   '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+
+
+  ],
+
+});</script>
+
+
+</div>
+
+<div class="container col-lg-6">
+  <h1 class="text-center">Eatwell Snack </h1>
+
+<div id= "example"></div>
+<script>
+Morris.Donut({
+  element: 'example',
+  data: [
+    {label: "Calories", value: 250},
+    {label: "Sugar", value: 40},
+     {label: "Fat", value: 5},
+     {label: "Carbs", value: 100},
+    {label: "Protein", value: 20},
+     {label: "Sodium", value: 0},
+     {label: "Fiber", value: 0},
+    {label: "Saturated Fat", value: 0}
+  ],
+   backgroundColor: '#000000',
+  labelColor: '#060',
+  colors: [
+   '#D22118',
+    '#F6FA16',
+    '#67C69D',
+    '#5316FA',
+    '#FA9316',
+ '#FC1A92',
+    '#C22FF3',
+    '#A46230'
+
+  ],
+});</script>
+
+<% end %>
+
+
+
+
+
+<div class="modal fade" id="contact" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog model-success">
+  <div class = "modal-content model-success">
+    <div class = "modal-header model-success">
+      <h3>Eight Tips for Healthy Eating</h3>
+    </div>
+    <div class = "modal-body">
+    
+<p>1. Eat lots of fruit and veg.</p>
+<p>2. Base your meals on starchy foods.</p>
+<p>3. Eat more fish. </p>
+<p>4. Cut down on saturated fat and sugar.</p>
+<p>5. Eat less salt.</p>
+<p>6. Get Active.</p>
+<p>7. Drink about 1.6 to 2 litres of water everyday.</p>
+<p>8. Dont skip breakfast.</p>
+<br>
+ <p> For more information visit: <a href = "http://www.nhs.uk/Livewell/Goodfood/Pages/eight-tips-healthy-eating.aspx"> The NHS Healthy Eating</a>
+
+  </div>
+    <div class = "modal-footer">
+      <a class = "btn btn-primary" data-dismiss = "modal" >OK</a>
+   
+  </div>
+</div>
+  </div>
+    </div>
+
+<a href = "#more" data-toggle="modal" > <h4 class = "text-right"> What does this mean ?</h4></a>
+
+
+</div>
+</div>
+
+<div class="container text-center col-lg-offset-1"><%= image_tag("Legend.png", :alt => "ATFT") %></div>
+<br><br><br> <br><br><br>   <br>
+</div>
+
+
+
+<div class="modal fade" id="more" data-backdrop="false" role = "dialog">
+<div class = "modal-dialog">
+  <div class = "modal-content">
+    <div class = "modal-header">
+     </div>
+    <div class = "modal-body">
+    <p>
+    <b>Have You Read The Guideline Presented ? </b> 
+
+   <p> If you have any further questions or any suggestions about the Food Diary facility, drop us a message on our Contact Page. 
+</p> </h5>
+   <a href = 'http://localhost:3000/messages' class =  "btn btn-default "> Contact Us Now</a>
+   <br>
+   <br>
+    <div class = "modal-footer">
+      <a class = "btn btn-primary" data-dismiss = "modal" >OK</a>
+     </div>
+</div>
+  </div>
+        </div>
+
+
+
+   	
+
+
+
+
+
+

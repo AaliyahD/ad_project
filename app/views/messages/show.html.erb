@@ -1,0 +1,27 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+
+<% if user_signed_in? %>
+<h4><%= link_to 'Back', messages_path %> | </h4>
+<% else %>
+<h4><%= link_to 'Back', root_path %> | </h4>
+<% end %>
+
+<div class="container">
+    <h1> <%= @message.user.first_name%> 's Message | <small> <%=  @message.created_at.strftime("%D") %> </small> 
+
+ 
+
+    <hr></h1>
+
+      <br>
+<p><h4 class = "text-left"><b>Subject</b>: <%= @message.subject%></h4><p>
+  <br>
+<p><h4 class = "text-left"><b>Message</b>: <%= @message.content %></h4><p> 
+   <br>   <hr>
+  <p><h4 class = "text-left"><b>Admin Response</b>: <%= @message.response %></h4><p> 

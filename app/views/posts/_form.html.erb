@@ -1,0 +1,76 @@
+
+
+<%=  render 'validation_errors', object: @post %>
+
+<%= bootstrap_form_for @post, html: { multipart: true }  do |f| %>
+<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          
+               <%= image_tag("art.jpg", :alt => "Fitnessclass feed") %>
+        </div>
+      </div>    
+           
+<br> <br>      <div class="col-md-2 personal-info">
+<div class ="container">
+ <div class="field input-group col-lg-7 col-lg-offset-0">
+     <div class="input-group-addon">Title</div>
+		<%= f.text_field :title, autofocus: true, :maxlength => 70, hide_label: true, placeholder: 'Add a title'  %> 
+        <br>
+       
+</div>
+</div>
+
+<br>
+  <div class ="container">
+ <div class="field input-group col-lg-7  col-xs-offset-1">
+        <%= f.file_field :image, hide_label: true %> </div>
+<div class ="col-xs-offset-1"><h4> <small>Your image <b>must</b> be in one of the following formats :jpg, jpeg, png or gif. </h4></small>
+
+</div>
+</div>
+<br>
+<div class ="container">
+<div class="form-group">
+ <div class="input-group col-lg-7 col-lg-offset-0">
+     <div class="input-group-addon">Content</div>
+            <%= f.text_area :content, hide_label: true, rows: 7, placeholder: 'Whats on your mind?' %><br>
+        </div>
+    </div>
+   </div>
+   <br>
+<div class ="container">
+<div class=" input-group col-lg-3 col-lg-offset-2 " data-role="tagsinput">
+ <div class="input-group-addon">Tags</div>
+ <%= f.select :tag_ids, Tag.all.collect {|t| [t.name, t.id]}, { hide_label: true},   multiple: :true %></div>
+<div class ="col-xs-offset-2"><h4><small>&nbsp;&nbsp; <p>Use <kbd>ctrl + A</kbd> to select more than one tag.</p></h4></small>
+</div>
+</div>
+
+<br>
+
+<div class ="container">
+<div class="field col-lg-9 col-lg-offset-0">
+	<%= f.check_box :publish, label: " Publish post when i click on Share" %>
+</div>
+<div class="field col-lg-9 col-lg-offset-0">
+ You need to check this box to confirm you would like to publish this post. 
+</div>
+
+<br><br><br><br><br><br>
+
+
+<div class ="container">
+<div class="form-group">
+        <div class="col-lg-9 col-lg-offset-5">
+            <button type="submit" class="btn btn-primary">Share</button>
+             <button type="submit" class="btn btn-default disabled">Save Draft</button>
+        </div>
+    </div>
+
+
+<% end %>
+<br>
+<br><br><br>
+<br><br>

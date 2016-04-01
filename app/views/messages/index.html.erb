@@ -1,0 +1,108 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+</style>
+<div class="container">
+    <h1>Contact Us</h1> 
+    <hr></h3>
+    <br> 
+<div class = "jumbotron text-center">
+  <div class="text-center"><h2><b>Our goal is to ensure you recieve first class service from us.</b>
+  <p> "We wont always get things right- <i> After all, we're only human</i>- but our promise to you is that we'll try to meet the following standards." </h3><p></p>
+</div>
+</div>
+
+
+<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+        <h2> F I N D &nbsp;  U S  </h2> 
+        <div class="alert alert-info alert-xs"></div> 
+        <%= image_tag("map.png", :alt => "Fitnessclass feed") %> 
+          </div>
+      <div class="text-left col-lg-offset-3"><h3><b>
+          	<small> AnyTime-FitTime Ltd<p>
+					<p>58 Fleets Lane
+					<p>Poole
+					<p>Dorset
+					<p>BH15 3BT
+					<p>United Kingdom</h3></b></small>
+					   
+					        <br> <br>
+					        <br> <br></div>
+                   
+ 
+      </div>    
+                
+ 
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+      	<div class="text-center"><h2>E N Q U I R I E S ?</h2>
+      		<div class="alert alert-info alert-xs"></div>
+      		<br>
+
+      	    <div class="text-center"> <h4>
+      	<p> <b>1.</b>  Call 0208 618 3100 (lines open 8am to 6:30pm, Monday to Friday) 
+      	<p><b> 2.</b> Tweet our member services team.&nbsp;&nbsp;
+      		<a href = 'https://twitter.com/?lang=en' class =  "btn btn-info text-center btn-xs"> Tweet Us</a></h4>
+      	 <h4><p><b> OR </b>	
+      	<p><b> 3.</b> Send a direct mesage to our team.&nbsp;&nbsp;
+      		<a href = 'http://localhost:3000/messages/new' class =  "btn btn-primary text-center btn-xs"> Create New Message</a></h4>
+<hr>
+     
+<div class="alert alert-info alert-xs"></div>
+
+<% if user_signed_in?%>
+
+
+
+  
+	<div class="text-center"><h2>A L L &nbsp;&nbsp;&nbsp;&nbsp; M E S S A G E S </h2>
+    <br><br>
+    
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th><h5  class = "text-left"><b>Date Sent</b></h5></th>
+			<th><h5  class = "text-left"><b>Message ID</b></h5></th>
+			<th><h5  class = "text-left"><b>Subject </b></h5></th>
+			<th><h5  class = "text-left"><b>Actions</b></h5></th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @messages.each do |message| %>
+			<% if user_signed_in?%>
+ 			<% if message.user_id == current_user.id %>
+			<tr>
+				<td><h5 class = "text-left"> <%=  message.created_at.strftime("%D") %></h5></td>
+				<td><h5 class = "text-left"> <%=  message.id %></h5></td>
+				<td><h5 class = "text-left"> <%=  message.subject %></h5></td>
+					<td>
+			
+					<%= link_to 'View', message_path(message) %> |
+					<%= link_to 'Del', message_path(message), method: :delete, data: {confirm: 'Are you sure you want to delete this message?'} %> 
+						<% end %>
+					<% end %>
+					
+
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p>
+<div class = "container">
+<h5><div class="text-left"><%= paginate @messages %></div></h5>
+</div>
+
+  <% else %>
+  <% end %>
+  

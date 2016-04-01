@@ -1,0 +1,42 @@
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<% if user_signed_in? %>
+<h4><%= link_to 'Back', diarylogs_path %> | </h4>
+<% else %>
+<h4><%= link_to 'Back', root_path %> | </h4>
+<% end %>
+
+<div class="container">
+    <h1> Food Diary</h1> 
+    <hr></h3>
+
+<br>
+<div class ="container">
+ 
+<h1 class = "text-center"> What Did I Eat Today ?</h1>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("balanced-diet.jpg", :alt => "diet") %>
+
+<% if user_signed_in? %>
+
+<p><h4> The food diary highlights the different types of food that make up our diet, and we show you the proportions you should eat them in to have a healthy, balanced diet. We advise you to input as much information as you can as this will help us to diagnose your nutrition intake. If you provide us with enough information we can guide you with short-term goals.
+	<br>
+<p> Help us to help you, Anytime is FitTime.</p></h4> 
+<% else %>
+	<p><h4> The food diary highlights the different types of food that make up our diet, and we show you the proportions you should eat them in to have a healthy, balanced diet. We advise you to input as much information as you can as this will help us to diagnose your nutrition intake. If you provide us with enough information we can guide you with short-term goals. </p>
+<br>
+	<p>Help us to help you, Anytime is FitTime. </p> </h4>
+		<% end %>
+
+
+
+
+<%= render 'form' %>
+
+
+</div>

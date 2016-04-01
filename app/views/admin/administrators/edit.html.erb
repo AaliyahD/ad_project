@@ -1,0 +1,56 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<h4><%= link_to 'Back', admin_administrators_path %> |</h4>
+
+<div class="container">
+    <h1>Administrators</h1> 
+    <hr></h3>
+
+<p><%= render 'validation_errors', object: @administrator %></p>
+
+<%= bootstrap_form_for [:admin, @administrator] do |f| %>
+
+<div class="col-md-2 personal-info">
+<div class ="container">
+ <div class="field input-group col-lg-7 col-lg-offset-2">
+     <div class="input-group-addon">Full Name</div>
+		<%= f.text_field :fullname, autofocus: true, hide_label: true  %> 
+      
+       
+</div>
+
+  <br>  <br>
+<div class="col-md-2 personal-info">
+<div class ="container">
+ <div class="field input-group col-lg-7 col-lg-offset-2">
+     <div class="input-group-addon">Username</div>
+		<%= f.text_field :username, hide_label: true  %> 
+       
+       
+
+</div>
+
+ <br> <br>
+<div class="col-md-2 personal-info">
+<div class ="container">
+ <div class="field input-group col-lg-7 col-lg-offset-2">
+     <div class="input-group-addon">Change Password</div>
+		<%= f.password_field :password, autofocus: true, hide_label: true  %> 
+
+</div>
+ <br> <br>
+<div class ="container">
+<div class="form-group">
+        <div class="col-lg-9 col-lg-offset-5">
+            <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+    </div>
+</p>
+
+<% end %>

@@ -1,0 +1,253 @@
+
+<head> 
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+</head>
+
+
+<div class="container">
+<div class = "jumbotron text-center">
+  <h1><b>Dashboard</b>
+
+  	  	</h1>
+  	  </div>
+
+<div class="btn-group btn-group-justified">
+                        <a href="http://localhost:3000/admin/administrators" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <br>Administrators
+                        </a>
+                        <a href="http://localhost:3000/admin/users" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-cloud"></i>
+                            <br> Users
+                        </a>
+                        <a href="http://localhost:3000/admin/diarylogs" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <br> Diary Logs
+                        </a>
+                        <a href="http://localhost:3000/admin/posts" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <br> Posts
+                        </a>
+                        <a href="http://localhost:3000/admin/tags" class="btn btn-primary col-sm-3">
+                  #
+                            <br> Tags
+                        </a>
+                        <a href="http://localhost:3000/admin/messages" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <br> Messages
+                        </a>
+                        </div>
+<br>
+<hr>
+  <div class="row">
+                <!-- center left-->
+                <div class="col-md-6">
+                    
+                     <div class="panel">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#profile" data-toggle="tab"><h4>System Updates</h4></a></li>
+                            <li><a href="#messages" data-toggle="tab"><h4> Inbox Messages</h4></a></li>
+                            <li><a href="#settings" data-toggle="tab"><h4> Comments</h4></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="profile">
+                            	<br>
+                               <p></p> The databse is currently set to hold up to <u><b>2000</b></u> users. This can be changed to hold values as large as 32767. See  <a href = "http://www.sqlite.org/limits.html"> Limits In SQLite </a> for more information. 
+                   <br>  <br>
+                        <p>   <h3><small> Current amount of users: 130 </small></h3>
+                        	 <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                                    <span class="sr-only">5% Complete</span>
+
+                            </div> 
+                                </div><br><br>                            </div>
+                            <div class="tab-pane fade in " id="messages">
+                               <table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th><h5  class = "text-left"><b>Date Sent</b></h5></th>
+			<th><h5  class = "text-left"><b>Message ID</b></h5></th>
+			<th><h5  class = "text-left"><b>Subject </b></h5></th>
+			<th><h5  class = "text-left"><b>Actions</b></h5></th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @messages.each do |message| %>
+		
+ 					<tr>
+				<td><h5 class = "text-left"> <%=  message.created_at.strftime("%D") %></h5></td>
+				<td><h5 class = "text-left"> <%=  message.id %></h5></td>
+				<td><h5 class = "text-left"> <%=  message.subject %></h5></td>
+					<td>
+			
+					<%= link_to 'View', message_path(message) %> |
+					<%= link_to 'Del', message_path(message), method: :delete, data: {confirm: 'Are you sure you want to delete this message?'} %> 
+					
+				
+					
+
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+                            </div>
+                            <div class="tab-pane fade in " id="settings">
+                                
+
+<% @comments.each do |comment| %>
+<h5 class = "text-center"><p>
+<b><%= comment.user.first_name %> </b> posted message on <b>'<%= comment.post.title %>'</b> <smal> about <%= time_ago comment.post.created_at %></small></p>
+<p><%= comment.message %></p>
+<p><%= link_to 'Delete', admin_comment_path(comment), method: :delete, data: {confirm: 'Are you sure you would like to delete this comment ?'} %></p></h5>
+
+<hr>
+<% end %>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+             
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>Users</h4></div>
+                        <div class="panel-body">
+                           
+                           
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Signed Up</th>
+			<th>Login Count </th>
+			
+		</tr>
+	</thread>
+	<tbody>
+	<% @users.each do |user| %>
+			<tr>
+				<td><%= link_to user.first_name + ' ' + user.last_name, user %></td>
+				<td><%= user.location %></td>
+				<td><%= time_ago(user.created_at) %></td>
+				<td><%= user.sign_in_count %></td>
+					
+				
+			</tr>
+		<% end %>
+	</tbody>
+</table> 
+
+<a href = 'http://localhost:3000/admin/users' class =  "btn btn-default col-lg-offset-5 text-right  "> View All </a>
+                           
+                        </div>
+                        <!--/panel-body-->
+                    </div>
+                    <!--/panel-->
+
+                    <hr>
+<br>
+             
+                   
+                    <!--/tabs-->
+
+                    <hr>
+                 
+                </div>
+                <!--/col-->
+                <div class="col-md-6">
+
+
+
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h4>Recent Posts</h4>
+                         </div>
+                        <div class="panel-body">
+                        
+                           
+                      
+
+<table class="table table=bordered table hover">
+	<thread>
+		<tr>
+			<th>Title</th>
+			<th>Comments</th>
+			<th>Posted</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+		<% @posts.each do |post| %>
+			<tr>
+				<td><%= truncate(post.title, length: 35, seperator: '') %></td>
+				<td><%= post.comments.count %></td>
+				<td><%= time_ago post.created_at %></td>
+				<td>
+					<%= link_to 'edit', edit_admin_post_path(post) %>
+					<%= link_to 'view', admin_post_path(post) %>
+					<%= link_to 'del', admin_post_path(post), method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} %> 
+				</td>						
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+                              <a href = 'http://localhost:3000/admin/posts/new' class =  "btn btn-primary col-lg-offset-4 text-right"> Create New </a>
+							
+							<a href = 'http://localhost:3000/admin/posts' class =  "btn btn-default col-lg-offset-0 text-right  "> View All </a>
+                        </div>
+                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h4>Recent Diary Logs</h4></div>
+                        <div class="panel-body">
+                           <table class="table table=bordered table hover"> 
+                            <thread>
+		<tr>
+			<th>Date Created</th>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Actions</th>
+		</tr>
+	</thread>
+	<tbody>
+
+		<% @diarylogs.each do |diarylog| %>
+			<tr>
+				<td><%= diarylog.created_at.strftime("%D") %></td>
+				<td><%= diarylog.user.first_name + ' ' + diarylog.user.last_name %></td>
+				<td><%= diarylog.user.location %></td>
+				<td>
+					
+					<%= link_to 'view', admin_diarylog_path(diarylog) %> 
+					<%= link_to 'delete', diarylog_path(diarylog), method: :delete, data: {confirm:  'Are you sure you would like to delete this log?'}  %> 
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<a href = 'http://localhost:3000/admin/diarylogs' class =  "btn btn-default col-lg-offset-5 text-right  "> View All </a>
+                        
+
+                  	</div>
+                    </div>
+               
+                
+
+
+
+
+
+
+
